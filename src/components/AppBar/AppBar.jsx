@@ -3,13 +3,31 @@ import { useSelector } from 'react-redux';
 import { selectIsLoggenIn } from '../../redux/auth/selectors';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
+import { Box, Container, Stack, Toolbar } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
 
-export const AppBar = () => {
+export const AppBars = () => {
   const isLoggen = useSelector(selectIsLoggenIn);
   return (
     <>
-      <Navigation />
-      {isLoggen ? <UserMenu /> : <AuthNav />}
+      <Box>
+        <AppBar position="static">
+          <Container>
+            <Toolbar>
+              <Navigation />
+              <Stack
+                spacing={2}
+                direction="row"
+                justifyContent="flex-end"
+                alignItems="center"
+                sx={{ flexGrow: 1 }}
+              >
+                {isLoggen ? <UserMenu /> : <AuthNav />}
+              </Stack>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </Box>
     </>
   );
 };

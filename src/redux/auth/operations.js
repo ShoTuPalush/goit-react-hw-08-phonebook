@@ -63,6 +63,3 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
-
-// qwedfgvbn@mail.com
-//  jdfghkjdfgh

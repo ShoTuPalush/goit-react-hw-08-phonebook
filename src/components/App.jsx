@@ -7,6 +7,8 @@ import { selectIsRefreshing } from '../redux/auth/selectors';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { Toaster } from 'react-hot-toast';
+import { Loader } from './Loader/Loader';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -59,8 +61,9 @@ export const App = () => {
           </Route>
         </Routes>
       ) : (
-        <b>Refreshing....</b>
+        <Loader />
       )}
+      <Toaster />
       <GlobalStyle />
     </>
   );

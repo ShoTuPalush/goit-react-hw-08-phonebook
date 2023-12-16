@@ -39,7 +39,7 @@ export const deleteContacts = createAsyncThunk(
 
 export const updateContacts = createAsyncThunk(
   'contacts/updateContacts',
-  async (contactId, credentials, thunkApi) => {
+  async ({ contactId, credentials }, thunkApi) => {
     try {
       const res = await axios.patch(`/contacts/${contactId}`, credentials);
       return res.data;
