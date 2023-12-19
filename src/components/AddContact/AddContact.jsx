@@ -1,14 +1,26 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from '../../redux/contacts/operations';
 import { Box, Button, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
+import { selectContacts } from '../../redux/contacts/selectors';
 
 export const AddContact = () => {
+  const contacts = useSelector(selectContacts);
   const dispath = useDispatch();
 
   const handleAdd = evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
+
+    if (
+      contacts.find(
+        contact =>
+          contact.name.toLowerCase() === form.elements.name.value.toLowerCase()
+      )
+    ) {
+      return toast.error(`${form.elements.name.value} is already in conracts`);
+    }
+
     dispath(
       addContacts({
         name: form.elements.name.value,
@@ -16,7 +28,7 @@ export const AddContact = () => {
       })
     );
     form.reset();
-    toast('Contact add.');
+    toast.success('Contact add.');
   };
   return (
     <>

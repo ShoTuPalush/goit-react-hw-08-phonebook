@@ -7,7 +7,9 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleLogin = evt => {
+    evt.preventDefault();
     const form = evt.currentTarget;
+
     dispatch(
       login({
         email: form.elements.email.value,
